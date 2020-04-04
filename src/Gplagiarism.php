@@ -69,17 +69,19 @@ class Gplagiarism{
         $proxies = $this->proxies; 
         $auth = $this->auth; 
 
-        $url = "http://google.com/search?q=".urlencode($text);
+        $url = "https://www.google.com/search?q=".urlencode($text);
         $curl = new Icurl();
 
         $html =  $curl->url($url)
         ->proxy($proxies)
         ->auth($auth[0], $auth[1])
         ->get();
-
+        
         $dom = str_get_html($html);
+        
 
         $results = $dom->find("div#main > div > div.ZINbbc");
+        
         
         if(count($results) < 1)
         {
@@ -196,7 +198,7 @@ class Gplagiarism{
         
         if($unq == 0)
         {
-            $data = "No data";
+            $data = [];
         }
         
         
