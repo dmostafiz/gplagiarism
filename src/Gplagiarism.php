@@ -38,39 +38,26 @@ class Gplagiarism{
     
     public function getResult($text, $proxies = array(), $auth = array())
     {
-    
+        if(!count($proxies))
+        {
+           die("You have to pass an array of valid proxies like [ '120.10.1.123:12345', '000.12.20.122:80' ] in the 2nd paramete of getResult function of Gplgiarism instace.");
+        }
+
+        if(!count($auth))
+        {
+            die("You have to pass an array of valid credentials for your private proxies like [ 'username', 'password' ] in the 3rd paramete of getResult function of Gplgiarism instace.");
+        }
+
         $url = "http://google.com/search?q=".urlencode($text);
-        
         $curl = new Icurl();
 
-        if(count($proxies) && count($auth))
-        {
-            $html =  $curl->url($url)
-                        ->proxy($proxies)
-                        ->auth($auth[0], $auth[1])
-                        ->get();
+        $html =  $curl->url($url)
+        ->proxy($proxies)
+        ->auth($auth[0], $auth[1])
+        ->get();
 
-        }
-        elseif(count($proxies) && !count($auth))
-        {
-            $html =  $curl->url($url)
-                        ->proxy($proxies)
-                        ->get();
-        }
-        elseif(!count($proxies) && count($auth))
-        {
-            $html =  $curl->url($url)
-                        ->auth($auth[0], $auth[1])
-                        ->get();
-        }
-        else 
-        {
-            $html =  $curl->url($url)->get();
-        } 
-
-                    
         $dom = str_get_html($html);
-        
+
         $results = $dom->find("div#main > div > div.ZINbbc");
         
         if(count($results) < 1)
@@ -136,7 +123,9 @@ class Gplagiarism{
         // die;
         
         $unq = 0;
-    
+        
+        $data = [];
+
         foreach($links as $key => $link)
         {
             $page = $curl->url($link)->get();
@@ -170,7 +159,7 @@ class Gplagiarism{
             if($plagpercent > 0)
             {
         
-                $data = [
+                $data[] = [
                     'title' => $titles[$key],
                     'link' => $link,
                     'text' =>  strip_tags($exc),
@@ -190,7 +179,7 @@ class Gplagiarism{
         }
         
         
-        return $data;
+        return json_decode( json_encode($data) );
     }
 }
 
