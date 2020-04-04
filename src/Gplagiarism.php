@@ -4,6 +4,33 @@ namespace Mostafiz\Gplagiarism;
 use Mostafiz\Icurl\Icurl;
 
 class Gplagiarism{
+
+    private $text;
+    private $proxies;
+    private $auth;
+
+    function __construct($text = "", $proxies = array(), $auth = array())
+    {
+
+        if($text == "")
+        {
+           die("Please pass an article as the first parameter.");
+        }
+
+        if(!count($proxies))
+        {
+           die("You have to pass an array of valid proxies like [ '120.10.1.123:12345', '000.12.20.122:80' ] in the 2nd paramete of getResult function of Gplgiarism instace.");
+        }
+
+        if(!count($auth))
+        {
+            die("You have to pass an array of valid credentials for your private proxies like [ 'username', 'password' ] in the 3rd paramete of getResult function of Gplgiarism instace.");
+        }
+
+        $this->text = $text; 
+        $this->proxies = $proxies; 
+        $this->auth = $auth; 
+    }
     
     private function excerpt_paragraph($html, $max_char = 100, $trail='...' )
     {
@@ -36,17 +63,11 @@ class Gplagiarism{
     }
     
     
-    public function getResult($text, $proxies = array(), $auth = array())
+    public function getResult()
     {
-        if(!count($proxies))
-        {
-           die("You have to pass an array of valid proxies like [ '120.10.1.123:12345', '000.12.20.122:80' ] in the 2nd paramete of getResult function of Gplgiarism instace.");
-        }
-
-        if(!count($auth))
-        {
-            die("You have to pass an array of valid credentials for your private proxies like [ 'username', 'password' ] in the 3rd paramete of getResult function of Gplgiarism instace.");
-        }
+        $text = $this->text; 
+        $proxies = $this->proxies; 
+        $auth = $this->auth; 
 
         $url = "http://google.com/search?q=".urlencode($text);
         $curl = new Icurl();
@@ -175,11 +196,10 @@ class Gplagiarism{
         
         if($unq == 0)
         {
-            $data = [];
+            $data = "No data";
         }
         
         
-        return json_decode( json_encode($data) );
+        return  json_decode(json_encode($data));
     }
 }
-
