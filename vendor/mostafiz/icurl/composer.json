@@ -1,0 +1,19 @@
+{
+    "name": "mostafiz/icurl",
+    "description": "Easy curl request package for php",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "d.mostafiz",
+            "email": "dev.mostafiz@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Mostafiz\\Icurl\\" : "src/"
+        }
+    },
+    "require": {}
+}

@@ -1,0 +1,21 @@
+{
+    "name": "mostafiz/gplagiarism",
+    "authors": [
+        {
+            "name": "Mostafiz Rahaman",
+            "email": "dev.mostafiz@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Mostafiz\\Gplagiarism\\" : "src/"
+        },
+        "files": [
+            "src/simple_html_dom.php"
+        ]
+    },
+    "require": {
+        "mostafiz/icurl": "v1.0.1"
+    },
+    "license": "MIT"
+}

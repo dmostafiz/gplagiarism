@@ -1,0 +1,51 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "49d413ef263f6f5f681417bb5d1fea80",
+    "packages": [
+        {
+            "name": "mostafiz/icurl",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dmostafiz/icurl.git",
+                "reference": "3449e9b5ff01dff2b930756137a42be51ffc9f76"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dmostafiz/icurl/zipball/3449e9b5ff01dff2b930756137a42be51ffc9f76",
+                "reference": "3449e9b5ff01dff2b930756137a42be51ffc9f76",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mostafiz\\Icurl\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "d.mostafiz",
+                    "email": "dev.mostafiz@gmail.com"
+                }
+            ],
+            "description": "Easy curl request package for php",
+            "time": "2020-04-03T12:57:01+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
